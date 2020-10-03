@@ -31,22 +31,26 @@ function runEnter() {
     tbody.html("");
 
     // Select the input element and get the raw HTML node
-    var inputElement = d3.select("#datetime");
+    var datetimeInput = d3.select("#datetime");
+    var cityInput = d3.select("#city");
 
     // Get the value property of the input element
-    var inputValue = inputElement.property("value");
+    var datetimeValue = datetimeInput.property("value");
+    var cityValue = cityInput.property("value");
 
     // Would be good to add some checking here to make sure the value inserted by the users can be
     //   directly compared to the datetime value from the data and clean it up if possible
 
     // Print the value to the console
-    console.log(inputValue);
+    console.log(datetimeValue);
+    console.log(cityValue);
 
     // Filter the table data down to the date entered
-    var filtered = tableData.filter(ufoIncident => ufoIncident.datetime === inputValue);
+    var filtered = tableData.filter(ufoIncident => ufoIncident.datetime === datetimeValue &&
+                                                   ufoIncident.city === cityValue);
 
     // Fill the table with the now filtered data
-    filtered.forEach((ufoIncidents) => {
+    filtered.forEach(ufoIncidents => {
         var row = tbody.append("tr");
         Object.entries(ufoIncidents).forEach(([key, value]) => {
             var cell = row.append("td");
