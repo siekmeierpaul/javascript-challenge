@@ -34,11 +34,13 @@ function runEnter() {
     var datetimeInput = d3.select("#datetime");
     var cityInput = d3.select("#city");
     var stateInput = d3.select("#state");
+    var countryInput = d3.select("#country");
 
     // Get the value property of the input element
     var datetimeValue = datetimeInput.property("value");
     var cityValue = cityInput.property("value");
     var stateValue = stateInput.property("value");
+    var countryValue = countryInput.property("value");
 
     // Would be good to add some checking here to make sure the value inserted by the users can be
     //   directly compared to the datetime value from the data and clean it up if possible
@@ -47,11 +49,13 @@ function runEnter() {
     console.log(datetimeValue);
     console.log(cityValue);
     console.log(stateValue);
+    console.log(countryValue);
 
     // Filter the table data down to the date entered
     var filtered = tableData.filter(ufoIncident => ufoIncident.datetime === datetimeValue &&
-                                                   ufoIncident.city === cityValue &&
-                                                   ufoIncident.state === stateValue);
+                                                   ufoIncident.city === cityValue.toLowerCase() &&
+                                                   ufoIncident.state === stateValue.toLowerCase() &&
+                                                   ufoIncident.country === countryValue.toLowerCase());
 
     // Fill the table with the now filtered data
     filtered.forEach(ufoIncidents => {
