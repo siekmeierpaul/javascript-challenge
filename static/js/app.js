@@ -55,10 +55,10 @@ function runEnter() {
     console.log(shapeValue);
 
     // Filter the table data down to the date entered
-    var filtered = tableData.filter(ufoIncident => ufoIncident.datetime === datetimeValue &&
-                                                   ufoIncident.city === cityValue.toLowerCase() &&
-                                                   ufoIncident.state === stateValue.toLowerCase() &&
-                                                   ufoIncident.country === countryValue.toLowerCase() &&
+    var filtered = tableData.filter(ufoIncident => ufoIncident.datetime === datetimeValue ||
+                                                   ufoIncident.city === cityValue.toLowerCase() ||
+                                                   ufoIncident.state === stateValue.toLowerCase() ||
+                                                   ufoIncident.country === countryValue.toLowerCase() ||
                                                    ufoIncident.shape === shapeValue.toLowerCase());
 
     // Fill the table with the now filtered data
